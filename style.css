@@ -205,6 +205,9 @@ h3 {
   line-height: 2em;
   color: #684511;
   font-style: italic;
+  opacity: 0;
+  transition: 1s;
+  transition-delay: 0.5s;
 }
 
 .block img{
@@ -220,10 +223,13 @@ h3 {
 }
 
 .title{
+  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 1em;
+  transition: 0.5s;
+
 }
 
 .mi {
@@ -277,10 +283,18 @@ h3 {
   opacity: 1;
 }
 
+.gallery .container{
+  height: 27em;
+  overflow: hidden;
+}
+
+
 .strip.appear img{
-  transition: 1s;
-  opacity: 0.5;
-  transform: scale(1.1);
+  transition: ease-in-out 1s;
+  opacity: 0.3;
+  transform: scale(1.2);
+  z-index: -1;
+
 }
 
 footer{
@@ -325,4 +339,12 @@ a.webdev:hover{
 }
 a.webdev:visited{
   color: #E3B23C;
+}
+
+.active .title{
+  opacity: 1
+}
+
+.active p{
+  opacity: 1
 }
