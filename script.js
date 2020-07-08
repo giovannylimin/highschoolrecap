@@ -83,7 +83,12 @@ let google = [
   'Remaking google search results: bottom view'
 ];
 let rps = [
-  ''
+  'Homepage for desktops',
+  'Desktop game choice',
+  'Desktop game result',
+  'Homepage for mobiles',
+  'Mobiles game choice',
+  'Mobiles game result'
 ];
 
 
@@ -106,7 +111,9 @@ function insertImages(article, n){
     
     gallery.innerHTML += `
     <div class="${article} strip" data-set="${i}">
+    <div class="container">
     <img src="img/${article}/${article}-${i}.jpg"/>
+    </div>
     <p>${caption[i-1]}</p>    
     </div>
     `;

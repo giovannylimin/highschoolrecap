@@ -211,6 +211,10 @@ h3 {
   max-height: 15em;
   max-width: 15em;
 }
+.gallery .container{
+  height: 27em;
+  overflow: hidden;
+}
 .gallery img{
   height: 27em;
 }
@@ -273,6 +277,13 @@ h3 {
   opacity: 1;
 }
 
+.strip.appear img{
+  transition: 1s;
+  opacity: 0.5;
+  transform: scale(1.1);
+  z-index: -1;
+}
+
 footer{
   background-color: #333533;
   color: #9b7e27;
@@ -303,4 +314,16 @@ font-weight: 500;
 }
 #otherComp h3{
   margin-left: -2em;
+}
+
+a.webdev {
+  color: #E3B23C
+}
+a.webdev:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+a.webdev:visited{
+  color: #E3B23C;
 }
