@@ -291,6 +291,9 @@ h3 {
 
 .strip.appear img{
   transition: ease-in-out 1s;
+  -webkit-transition: all ease-in-out 1s;
+  -moz-transition : all ease-in-out 1s;
+
   opacity: 0.3;
   transform: scale(1.2);
   z-index: -1;
@@ -345,6 +348,6 @@ a.webdev:visited{
   opacity: 1
 }
 
-.active p{
+.active .block p{
   opacity: 1
 }
