@@ -312,11 +312,11 @@ color: #333533;
 margin-bottom: 1em;
 }
 
-.connect a:hover{
+.connect:hover span{
 color: #3861ac;
 font-weight: 500;
 }
-.connect a{
+.connect span{
   color: #1c428a
 }
 .heart {
