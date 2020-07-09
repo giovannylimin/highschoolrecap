@@ -155,7 +155,7 @@ function insertImages(article, n){
 
 
         let index = 1;
-        let track = 0
+        let track = 0;
 
         for(let i=1; i<=n; i++){
           const imageStrip = document.querySelector(`#${article}-${i}`);
@@ -173,7 +173,7 @@ function insertImages(article, n){
 
         if(mi.scrollLeft >=0 && mi.scrollLeft <= mi.scrollWidth){
         this.classList.contains('left') ?
-        mi.scrollLeft -= currentImage.offsetwidth : 
+        mi.scrollLeft -= currentImage.offsetWidth : 
         mi.scrollLeft += currentImage.offsetWidth;
 
 
