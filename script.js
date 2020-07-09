@@ -195,6 +195,34 @@ insertImages('qna', 7);
 insertImages('google', 4);
 insertImages('rps',6);
 
+const iegamesGallery = document.querySelector('#iegames .gallery');
+
+/*
+function createVid(n){
+  iegamesGallery.innerHTML += `
+  <div class="iegames strip" id="iegames-${n+3}">
+  <div class="container">
+  <video>
+  <source src="img/iegames/iegames-mac${n}.mp4" type="video/mp4">
+  Sorry, your browser doesn't supprt embedded videos.
+  </video>
+  </div>
+  <p>${iegames[n+3]}</p>    
+  </div>
+  `
+
+}
+
+createVid(1);
+createVid(2);
+
+const vids = iegamesGallery.querySelectorAll('video');
+vids.forEach(vid=>{
+  vid.controls = true;
+  vid.volume = 0.7;
+});
+*/
+
 
 let strip = document.querySelectorAll('.strip');
 function showCaption(e){
@@ -258,7 +286,7 @@ articles.forEach(article => {
 
 function autoScroll(){
   if(article.classList.contains('active')){
-   mi.scrollLeft+=3;
+   mi.scrollLeft++;
 
    if(mi.scrollLeft >= mi.scrollWidth - gallery.offsetWidth){
      clearInterval(autoScrollInt);
@@ -275,3 +303,20 @@ clearInterval(autoScrollInt);
 }
 
 autoScrollCheck();
+
+
+
+function createVid(n){
+const vid = document.createElement('video');
+vid.innerHTML = `
+<source src="img/iegames/iegames-mac${n}.mp4" type="video/mp4">
+Sorry, your browser doesn't support embedded videos.
+`
+
+vid.controls = true;
+vid.volume = 0.7;
+iegamesGallery.appendChild(vid);
+}
+
+createVid(1);
+createVid(2);

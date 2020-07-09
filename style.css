@@ -388,3 +388,8 @@ button.disappear{
   transition: 0.2s;
   opacity: 0;
 }
+
+video{
+  outline: none;
+  height: 27em;
+}
