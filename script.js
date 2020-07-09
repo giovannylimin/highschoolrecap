@@ -2,7 +2,6 @@ const nav = document.querySelector('nav');
 const topOfNav = nav.offsetTop;
 
 function fixNav(){
-  console.log(topOfNav, window.scrollY);
   if(window.scrollY >= topOfNav){
     document.body.style.paddingTop = nav.offsetHeight + 'px';
     document.body.classList.add('fixed');
@@ -94,32 +93,98 @@ let rps = [
 
 
 function insertImages(article, n){
-  let gallery = document.querySelector(`#${article} .gallery`);
+  const art = document.querySelector(`#${article}`)
+  const gallery = document.querySelector(`#${article} .gallery`);
   let caption;
   let array = {osn, kihajar, kalfor, iegames, otherComp, osis, qna, google, rps};
   for (const key of Object.entries(array)){
   if(key.toString().includes(article)){
     caption = key[1];
-    console.log(caption);
-  }else{
-    console.log('error!');
   }
 }
 
+
   for(let i=1; i<=n; i++){
-    
-    
     gallery.innerHTML += `
-    <div class="${article} strip" data-set="${i}">
+    <div class="${article} strip" id="${article}-${i}">
     <div class="container">
     <img src="img/${article}/${article}-${i}.jpg"/>
     </div>
     <p>${caption[i-1]}</p>    
     </div>
-    `;
-    
+    `;  
   }
-}
+  gallery.innerHTML += `
+  <div class="frame">
+  <button class="scroll left">&lt;</button>
+  <button class="scroll right">&gt;</button>
+  </div>
+    `
+  
+    const frame = gallery.querySelector('.frame');
+    frame.style.width = gallery.offsetWidth + 'px';
+    frame.style.height = (6/7)*gallery.offsetHeight + 'px';
+
+    const lastChild = gallery.querySelector(`#${article}-${n}`);
+
+
+    function viewScroll(e){
+
+      const scrollLimit = this.scrollWidth - gallery.offsetWidth
+      if(this.scrollLeft <=0){
+        leftButton.classList.add('disappear');
+      }else if(this.scrollLeft >= scrollLimit){
+        rightButton.classList.add('disappear');
+      }else{
+        buttons.forEach(button=>button.classList.remove('disappear'));
+      }
+
+      
+    }
+    const mi = document.querySelector(`#${article} .mi`);
+    mi.addEventListener('scroll',viewScroll)
+
+    const leftButton = mi.querySelector('.left');
+    const rightButton = mi.querySelector('.right');
+    const buttons = mi.querySelectorAll('button');
+
+    
+    buttons.forEach(button => button.addEventListener('click',handleButtons));
+
+    function handleButtons(e){
+
+
+        let index = 1;
+        let track = 0
+
+        for(let i=1; i<=n; i++){
+          const imageStrip = document.querySelector(`#${article}-${i}`);
+          if(mi.scrollLeft > track && index <n){
+            index+=1;
+            track+=imageStrip.offsetWidth
+          }
+        }
+        console.log(index);
+        const previousImage = document.querySelector(`#${article}-${index-1}`)
+        const nextImage= document.querySelector(`#${article}-${index+1}`)
+        const currentImage = document.querySelector(`#${article}-${index}`)
+
+
+
+        if(mi.scrollLeft >=0 && mi.scrollLeft <= mi.scrollWidth){
+        this.classList.contains('left') ?
+        mi.scrollLeft -= currentImage.offsetwidth : 
+        mi.scrollLeft += currentImage.offsetWidth;
+
+
+      }
+    }
+      
+    }
+
+    
+    
+
 insertImages('osn',3);
 insertImages('kihajar',8);
 insertImages('kalfor',6);
@@ -130,10 +195,10 @@ insertImages('qna', 7);
 insertImages('google', 4);
 insertImages('rps',6);
 
+
 let strip = document.querySelectorAll('.strip');
 function showCaption(e){
 this.classList.add('appear');
-console.log('hello');
 }
 function hideCaption(e){
 this.classList.remove('appear');
@@ -157,27 +222,56 @@ function debounce(func, wait = 15, immediate = true) {
   };
 }
 
-const sliderImages = document.querySelectorAll('article');
+const articles = document.querySelectorAll('article');
 
 function checkSlide(e){
-  console.log(sliderImages);
-  sliderImages.forEach(sliderImage => {
-    const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.style.height/2;
-    console.log(sliderImage.style.height);
 
-    const imageBottom = sliderImage.offsetTop + sliderImage.style.height;
+  articles.forEach(article => {
+    const slideInAt = (window.scrollY + window.innerHeight) - article.style.height/2;
 
-    const isHalfShown = slideInAt > sliderImage.offsetTop;
+    const imageBottom = article.offsetTop + article.style.height;
+
+    const isHalfShown = slideInAt > article.offsetTop;
     
     const isNotScrolledPast = window.scrollY < imageBottom;
 
     if (isHalfShown && isNotScrolledPast){
-      sliderImage.classList.add('active');
+      article.classList.add('active');
     } else {
-      sliderImage.classList.remove('active');
+      article.classList.remove('active');
     }
+
   })
 
 }
 
 window.addEventListener('scroll', debounce(checkSlide));
+
+
+function autoScrollCheck(){
+articles.forEach(article => {
+  const mi = article.querySelector('.mi');
+  const gallery = article.querySelector('.gallery');
+  const buttons = article.querySelectorAll('button');
+
+  let autoScrollInt = setInterval(autoScroll,50);
+
+function autoScroll(){
+  if(article.classList.contains('active')){
+   mi.scrollLeft+=3;
+
+   if(mi.scrollLeft >= mi.scrollWidth - gallery.offsetWidth){
+     clearInterval(autoScrollInt);
+   }
+  }
+buttons.forEach(button=>button.addEventListener('click',handleClick));
+function handleClick(e){
+clearInterval(autoScrollInt);
+}
+
+}
+  
+});
+}
+
+autoScrollCheck();

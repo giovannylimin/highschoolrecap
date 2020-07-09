@@ -19,7 +19,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -88,7 +87,6 @@ nav {
   align-items: stretch;
   top: 0;
   position: relative;
-  width: 100%;
   transition: 0.5s;
   z-index: 1;
 }
@@ -161,6 +159,7 @@ article{
 
 .fixed nav{
   position: fixed;
+  width: 100%;
 }
 .fixed nav img{
   display: none;
@@ -238,6 +237,7 @@ h3 {
   flex: 3;
   background-color: #242423;
   overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 .gallery{
   display: flex;
@@ -283,20 +283,14 @@ h3 {
   opacity: 1;
 }
 
-.gallery .container{
-  height: 27em;
-  overflow: hidden;
-}
-
-
 .strip.appear img{
-  transition: ease-in-out 1s;
-  -webkit-transition: all ease-in-out 1s;
-  -moz-transition : all ease-in-out 1s;
+  transition: ease-in-out 0.5s;
+  -webkit-transition: all ease-in-out 0.5s;
+  -moz-transition : all ease-in-out 0.5s;
+  -o-transition: all ease-in-out 0.5s;
 
   opacity: 0.3;
   transform: scale(1.2);
-  z-index: -1;
 
 }
 
@@ -350,4 +344,47 @@ a.webdev:visited{
 
 .active .block p{
   opacity: 1
+}
+
+.frame{
+  position: absolute;
+  visibility: hidden;
+}
+
+button.scroll{
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  box-sizing: border-box;
+  background-color: #242423;
+  border: transparent;
+  font-weight: 500;
+  font-size: 2em;
+  border-radius: 3em;
+  width: 1.5em;
+  height: 1.5em;
+  color: #edebdf;
+  vertical-align: middle;
+  opacity: 0.8;
+  outline: none;
+
+}
+button.scroll:hover{
+  border: solid 0.1em #f5cb5c
+}
+button.scroll:active{
+  transition: 0.2s;
+  transform: scale(0.9);
+}
+button.scroll.left{
+  left: 0.6em;
+}
+
+button.scroll.right{
+  right: 0.6em;
+}
+
+button.disappear{
+  transition: 0.2s;
+  opacity: 0;
 }
