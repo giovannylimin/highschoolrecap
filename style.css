@@ -393,3 +393,8 @@ video{
   outline: none;
   height: 27em;
 }
+
+a h3:hover{
+ color: #E3B23C;
+
+}
