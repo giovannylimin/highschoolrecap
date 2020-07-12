@@ -394,6 +394,9 @@ video{
   height: 27em;
 }
 
+a h3:link{
+color: #333533;
+}
 a h3:hover{
  color: #E3B23C;
 
