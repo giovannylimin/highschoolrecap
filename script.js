@@ -90,13 +90,17 @@ let rps = [
   'Mobiles game result'
 ];
 
-
+let etch = [
+  'Starting page',
+  'Canvas with primary settings',
+  'More settings'
+]
 
 function insertImages(article, n){
   const art = document.querySelector(`#${article}`)
   const gallery = document.querySelector(`#${article} .gallery`);
   let caption;
-  let array = {osn, kihajar, kalfor, iegames, otherComp, osis, qna, google, rps};
+  let array = {osn, kihajar, kalfor, iegames, otherComp, osis, qna, google, rps, etch};
   for (const key of Object.entries(array)){
   if(key.toString().includes(article)){
     caption = key[1];
@@ -194,6 +198,7 @@ insertImages('osis',7);
 insertImages('qna', 7);
 insertImages('google', 4);
 insertImages('rps',6);
+insertImages('etch', 3);
 
 const iegamesGallery = document.querySelector('#iegames .gallery');
 
